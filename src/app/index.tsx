@@ -3,6 +3,7 @@ import { colors } from "../styles/colors";
 import Button from "@/components/ui/button";
 import { Fragment, useEffect, useState } from "react";
 import CarouselButton from "@/components/ui/carouselButton";
+import { Link } from "expo-router";
 
 export default function Index() {
     const carouselItems = [
@@ -30,7 +31,7 @@ export default function Index() {
         }
     ];
 
-    const [item, setItem] = useState(carouselItems[0]);
+    // const [item, setItem] = useState(carouselItems[0]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -82,10 +83,12 @@ export default function Index() {
                     ))}
                 </View>
 
-                <Button
-                    title="Comece a usar Planejei agora"
-                    backgroud={colors.green}
-                />
+                <Link href="/cadaster" asChild>
+                    <Button
+                        title="Comece a usar agora"
+                        backgroud={colors.orange}
+                    />
+                </Link>
             </View>
         </View>
     )
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     },
     Description: {
         fontSize: 16,
-        color: colors.black,
+        color: colors.darkGray,
         textAlign: "center"
     },
     SpecialDescription: {
