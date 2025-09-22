@@ -28,7 +28,7 @@ export default function useUserDataBase() {
     }
   }
 
-  async function showName() {
+  async function showUser() {
     try {
       const query = "SELECT * FROM user";
 
@@ -40,18 +40,18 @@ export default function useUserDataBase() {
     }
   }
 
-  async function showNameByName(name: string) {
-    try {
-      const query = "SELECT * FROM user WHERE name LIKE ?";
+  // async function showNameByName(name: string) {
+  //   try {
+  //     const query = "SELECT * FROM user WHERE name LIKE ?";
 
-      const response = await database.getAllAsync<Props>(query, [name]);
-      // `%${name}%`
+  //     const response = await database.getAllAsync<Props>(query, [name]);
+  //     // `%${name}%`
 
-      return { response };
-    } catch (error) {
-      throw error;
-    }
-  }
+  //     return { response };
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 
-  return { create, showName, showNameByName };
+  return { create, showUser };
 }

@@ -1,26 +1,43 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import { use, useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { router } from "expo-router";
 
-import { colors } from "@/styles/colors";
-import Button from "@/components/ui/button";
-import Input from "../../components/ui/input";
 import useUserDataBase from "@/database/useUserDataBase";
 
-export default function Cadaster() {
+import { colors } from "@/styles/colors";
+
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
+
+import InitialRegisterBody from "@/components/initialRegisterBody";
+
+export default function Register() {
     const [name, setName] = useState("");
-    const [teste, setTeste] = useState("Caio");
 
     const userDataBase = useUserDataBase();
 
     function create() {
-        userDataBase.create({
-            name
-        });
+        if (name.length >= 4) {
+            userDataBase.create({
+                name
+            });
+
+            alert("Usuário criado com sucesso!");
+
+            router.replace("/firstBankRegister");
+        } else {
+            alert("Não foi possivel criar usuário pois é preciso de 4 ou mais caracteres")
+        }
+    }
+
+    function temp() {
+        router.replace("/firstBankRegister");
+
     }
 
     async function list() {
         try {
-            const { response } = await userDataBase.showName();
+            const { response } = await userDataBase.showUser();
 
             console.log(response);
         } catch (error) {
@@ -33,11 +50,7 @@ export default function Cadaster() {
     }, [])
 
     return (
-        <View style={styles.Screen}>
-            <View style={styles.Header}>
-                <Image source={require('../../assets/images/panda-coin.png')} />
-            </View>
-
+        <InitialRegisterBody>
             <View style={styles.MainContent}>
                 <View style={styles.Texts}>
                     <Text style={styles.Title}>
@@ -58,31 +71,18 @@ export default function Cadaster() {
                 <Button
                     title="Confirmar"
                     backgroud={colors.orange}
-                    onPress={create}
+                    onPress={temp}
                 />
             </View>
-        </View>
+        </InitialRegisterBody>
     )
 }
 
 const styles = StyleSheet.create({
-    Screen: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
-    },
-    Header: {
-        backgroundColor: colors.green,
-        borderBottomLeftRadius: 256,
-        minHeight: 250,
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "flex-end"
-    },
     MainContent: {
         paddingTop: 24,
-        paddingRight: 40,
-        paddingLeft: 40,
+        paddingRight: 32,
+        paddingLeft: 32,
         flex: 1,
         flexDirection: "column",
         justifyContent: "space-between",

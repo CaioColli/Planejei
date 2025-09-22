@@ -83,7 +83,7 @@ export default function Index() {
                     ))}
                 </View>
 
-                <Link href="/cadaster" asChild>
+                <Link href="/register" asChild>
                     <Button
                         title="Comece a usar agora"
                         backgroud={colors.orange}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: 40,
+        padding: 32,
     },
     MainContent: {
         flex: 1,
