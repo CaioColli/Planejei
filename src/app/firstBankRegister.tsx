@@ -9,11 +9,14 @@ import RadioButton from "@/components/ui/radioButton";
 import InitialRegisterBody from "@/components/initialRegisterBody";
 import RadioChooses from "@/components/radioChooses";
 import { banks } from "@/constants/banks";
+import InputContainer from "@/components/inputContainer";
 
 export default function FirstBankRegister() {
-    const [bank, setBank] = useState('');
+    const [bank, setBank] = useState<string>('');
+    const [bankLimit, setBankLimit] = useState<number>();
+    const [invoiceClosing, setInvoiceClosing] = useState<number>();
+    const [payday, setPayday] = useState<number>();
 
-    console.log(bank);
 
     return (
         <InitialRegisterBody>
@@ -46,6 +49,24 @@ export default function FirstBankRegister() {
                                 </Fragment>
                             ))
                         }
+                    />
+
+                    <InputContainer
+                        label="Digite o valor do seu limite"
+                        onChange={(value) => setBankLimit(Number(value))}
+                        placeholder="Ex: 1000,00"
+                    />
+
+                    <InputContainer
+                        label="Digite o fechamento da fatura"
+                        onChange={(value) => setInvoiceClosing(Number(value))}
+                        placeholder="Ex: 10"
+                    />
+
+                    <InputContainer
+                        label="Digite o dia de pagamento"
+                        onChange={(value) => setPayday(Number(value))}
+                        placeholder="Ex: 15"
                     />
 
                 </View>

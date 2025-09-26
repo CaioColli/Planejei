@@ -3,17 +3,15 @@ import { StyleSheet, TextInput } from "react-native";
 
 interface Props {
     placeholder: string;
-    onChange: (text: string) => void;
-    value: string
+    onChange: (value: string | number) => void;
 }
-export default function Input({ placeholder, onChange, value }: Props) {
+export default function Input({ placeholder, onChange }: Props) {
     return (
         <TextInput 
             style={styles.Input}
             placeholder={placeholder}
             placeholderTextColor={colors.darkGray}
             onChangeText={onChange}
-            value={value}
         />
     )
 }

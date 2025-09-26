@@ -12,7 +12,7 @@ import Input from "@/components/ui/input";
 import InitialRegisterBody from "@/components/initialRegisterBody";
 
 export default function Register() {
-    const [name, setName] = useState("");
+    const [name, setName] = useState<string>("");
 
     const userDataBase = useUserDataBase();
 
@@ -32,7 +32,6 @@ export default function Register() {
 
     function temp() {
         router.replace("/firstBankRegister");
-
     }
 
     async function list() {
@@ -63,8 +62,7 @@ export default function Register() {
 
                     <Input
                         placeholder="Digite seu nome"
-                        onChange={(text) => setName(text)}
-                        value={name}
+                        onChange={(text) => setName(String(text))}
                     />
                 </View>
 
